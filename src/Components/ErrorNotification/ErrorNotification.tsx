@@ -7,9 +7,7 @@ type Props = {
   setError: Dispatch<SetStateAction<ErrorType>>;
 };
 
-export const ErrorNotification: React.FC<Props> = props => {
-  const { error, setError } = props;
-
+export const ErrorNotification: React.FC<Props> = ({ error, setError }) => {
   useEffect(() => {
     if (error === ErrorType.Empty) {
       return;
@@ -22,17 +20,13 @@ export const ErrorNotification: React.FC<Props> = props => {
     return () => {
       clearTimeout(timerId);
     };
-  });
-
-  if (error === ErrorType.Empty) {
-    return null;
-  }
+  }, [error, setError]);
 
   return (
     <div
       data-cy="ErrorNotification"
       className={cn('notification is-danger is-light has-text-weight-normal', {
-        hidden: ErrorType.Empty,
+        hidden: error === ErrorType.Empty,
       })}
     >
       <button

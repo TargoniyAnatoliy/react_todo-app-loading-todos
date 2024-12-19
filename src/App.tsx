@@ -70,9 +70,7 @@ export const App: React.FC = () => {
         )}
       </div>
 
-      {errorMessage && (
-        <ErrorNotification error={errorMessage} setError={setErrorMessage} />
-      )}
+      <ErrorNotification error={errorMessage} setError={setErrorMessage} />
     </div>
   );
 };

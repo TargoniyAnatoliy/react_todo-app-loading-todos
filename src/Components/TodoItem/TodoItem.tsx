@@ -11,7 +11,7 @@ export const TodoItem: React.FC<Props> = props => {
 
   return (
     <div data-cy="Todo" className={cn('todo', { completed: todo.completed })}>
-      { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */ }
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="todo-check" className="todo__status-label">
         <input
           id="todo-check"
