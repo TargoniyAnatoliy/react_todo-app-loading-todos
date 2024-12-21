@@ -5,7 +5,7 @@ type Props = {};
 export const TodoHeader: React.FC<Props> = props => {
   const {} = props;
 
-  const inputRef = useRef<HTMLImageElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -15,14 +15,12 @@ export const TodoHeader: React.FC<Props> = props => {
 
   return (
     <header className="todoapp__header">
-      {/* this button should have `active` class only if all todos are completed */}
       <button
         type="button"
         className="todoapp__toggle-all active"
         data-cy="ToggleAllButton"
       />
 
-      {/* Add a todo on form submit */}
       <form>
         <input
           data-cy="NewTodoField"

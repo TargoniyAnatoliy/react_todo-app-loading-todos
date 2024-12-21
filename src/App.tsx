@@ -18,18 +18,20 @@ export const App: React.FC = () => {
   const filteredTodos = useMemo(
     () =>
       todos.filter(todo => {
-        if (filterStatus === Filter.All) {
-          return true;
+        switch (filterStatus) {
+          case Filter.Active:
+            return !todo.completed;
+          case Filter.Completed:
+            return todo.completed;
+          case Filter.All:
+          default:
+            return true;
         }
-
-        return filterStatus === Filter.Completed
-          ? todo.completed
-          : !todo.completed;
       }),
     [todos, filterStatus],
   );
 
-  const todosLeft = useMemo(
+  const activeTodosLeft = useMemo(
     () => todos.filter(todo => !todo.completed).length,
     [todos],
   );
@@ -53,7 +55,7 @@ export const App: React.FC = () => {
       <div className="todoapp__content">
         <TodoHeader />
 
-        {todos.length > 0 && (
+        {!!todos.length && (
           <>
             <section className="todoapp__main" data-cy="TodoList">
               {filteredTodos.map(todo => (
@@ -64,7 +66,7 @@ export const App: React.FC = () => {
             <TodoFooter
               filterStatus={filterStatus}
               setFilterStatus={setFilterStatus}
-              todosLeft={todosLeft}
+              todosLeft={activeTodosLeft}
             />
           </>
         )}
